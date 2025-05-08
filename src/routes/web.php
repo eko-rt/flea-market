@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Fortify;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Fortify::registerView(function () {
+    return view('auth.register');
+});
+
+Fortify::loginView(function () {
+    return view('auth.login');
+});
+
+Fortify::verifyEmailView(function () {
+    return view('auth.verify-email');
 });
