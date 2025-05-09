@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Illuminate\Validation\ValidationException;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
@@ -17,27 +18,21 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
+        // バリデーションルールを定義
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'post_code' => ['required', 'string', 'max:10'], 
+            'address' => ['required', 'string', 'max:255'],  
+            'building_name' => ['nullable', 'string', 'max:255'], 
+        ])->validate();
 
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique('users')->ignore($user->id),
-            ],
-        ])->validateWithBag('updateProfileInformation');
-
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
-            $this->updateVerifiedUser($user, $input);
-        } else {
-            $user->forceFill([
-                'name' => $input['name'],
-                'email' => $input['email'],
-            ])->save();
-        }
+        // ユーザー情報を保存
+        $user->forceFill([
+            'name' => $input['name'],
+            'post_code' => $input['post_code'], 
+            'address' => $input['address'],    
+            'building_name' => $input['building_name'], 
+        ])->save();
     }
 
     /**
