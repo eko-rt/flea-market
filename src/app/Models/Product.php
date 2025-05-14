@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'category_id', 'condition_id', 'name', 'description', 'price', 'status_id', 'product_image'
+        'user_id', 'category_id', 'condition_id', 'name', 'description', 'brand_name' , 'price', 'sold_out', 'product_image'
     ];
 
     public function user()
@@ -44,9 +44,4 @@ class Product extends Model
     }
 }
 
-// 売り切れチェック
-$product->sold_out; 
 
-// 売り切れ状態を設定
-$product->sold_out = true;
-$product->save();

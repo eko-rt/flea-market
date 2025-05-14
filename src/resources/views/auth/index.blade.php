@@ -14,34 +14,25 @@
 
 @section('content')
 <div class="container">
-    @auth
-    <!-- ログイン時の表示 -->
     <div class="tabs">
-        <a href="#" class="tab active">おすすめ</a>
-        <a href="#" class="tab">マイリスト</a>
+        @auth
+            <a href="#" class="tab active">おすすめ</a>
+            <a href="#" class="tab">マイリスト</a>
+        @else
+            <a href="#" class="tab active">おすすめ</a>
+            <a href="#" class="tab">マイリスト</a>
+        @endauth
     </div>
+
     <div class="product-grid">
-        @for ($i = 0; $i < 8; $i++)
+        @foreach ($products as $product)
         <div class="product-card">
-            <div class="product-image">
-                <img src="{{ asset('images/product-placeholder.png') }}" alt="商品画像">
+            <div class="products-image">
+            <img src="{{ asset('storage/products-img' . $product->product_image) }}" alt="商品画像" width="max">
             </div>
-            <div class="product-name">商品名</div>
+            <div class="product-name">{{ $product->name }}</div>
         </div>
-        @endfor
+        @endforeach
     </div>
-    @else
-    <!-- ログアウト時の表示 -->
-    <div class="product-grid">
-        @for ($i = 0; $i < 8; $i++)
-        <div class="product-card">
-            <div class="product-image">
-                <img src="{{ asset('images/product-placeholder.png') }}" alt="商品画像">
-            </div>
-            <div class="product-name">商品名</div>
-        </div>
-        @endfor
-    </div>
-    @endauth
 </div>
 @endsection

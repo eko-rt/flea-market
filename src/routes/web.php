@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 
@@ -15,10 +16,6 @@ use App\Http\Controllers\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('auth.index');
-});
 
 // Fortify のビュー設定
 Fortify::registerView(fn () => view('auth.register'));
@@ -38,4 +35,6 @@ Route::post('/logout', function () {
     auth()->logout();
     return redirect('/'); // ログアウト後に index ページへリダイレクト
 })->name('logout');
+
+Route::get('/', [ProductController::class, 'index']);
 

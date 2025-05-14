@@ -11,12 +11,13 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
+use Laravel\Fortify\Contracts\UpdateProfileInformationResponse as UpdateProfileInformationResponseContract;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -42,6 +43,25 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(fn () => view('auth.register'));
         Fortify::loginView(fn () => view('auth.login'));
 
+        // 会員登録後のリダイレクト先を設定
+        $this->app->singleton   (RegisterResponseContract::class, function () {
+        return new class implements     RegisterResponseContract {
+            public function toResponse($request):   RedirectResponse
+             {
+                    return redirect('/mypage/profile'); 
+                }
+            };
+        });
+
+        // プロフィール更新後のリダイレクト先を設定
+        $this->app->singleton(UpdateProfileInformationResponseContract::class, fn () =>
+            new class implements UpdateProfileInformationResponseContract {
+            public function toResponse($_): RedirectResponse 
+                {
+                    return redirect('/');
+                }
+            }
+        );;
 
         Fortify::authenticateUsing(function (Request $request) {
             $loginRequest = new LoginRequest();
@@ -71,6 +91,10 @@ class FortifyServiceProvider extends ServiceProvider
             ]);
         });
 
+        // ログインのレートリミットを緩和（例: 100回/1分）
+        RateLimiter::for('login', fn (Request $request) =>
+    Limit::perMinute(100)->by($request->ip())
+);
 
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
