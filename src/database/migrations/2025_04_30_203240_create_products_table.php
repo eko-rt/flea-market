@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('condition_id')->constrained('conditions');
-            $table->foreignId('status_id')->constrained('statuses');
+            $table->boolean('sold_out')->default(false);
             $table->string('name');
             $table->string('description');
             $table->integer('price');

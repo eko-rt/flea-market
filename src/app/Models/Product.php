@@ -28,11 +28,6 @@ class Product extends Model
         return $this->belongsTo(Condition::class);
     }
 
-    public function status()
-    {
-        return $this->belongsTo(Status::class);
-    }
-
     public function likes()
     {
         return $this->hasMany(Like::class);
@@ -48,3 +43,10 @@ class Product extends Model
         return $this->hasMany(Purchase::class);
     }
 }
+
+// 売り切れチェック
+$product->sold_out; 
+
+// 売り切れ状態を設定
+$product->sold_out = true;
+$product->save();
