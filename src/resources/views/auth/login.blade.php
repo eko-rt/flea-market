@@ -1,4 +1,4 @@
-@extends('layouts.common')
+@extends('layouts.header')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/register.css') }}">
@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <h2 class="form-title">ログイン</h2>
-    <form method="POST" action="{{ route('register') }}" class="register-form">
+    <form method="POST" action="{{ route('login') }}" class="register-form">
         @csrf
         <div class="form-group">
             <label for="email">メールアドレス</label>

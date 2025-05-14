@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +20,11 @@ Route::get('/', function () {
     return view('auth.index');
 });
 
-Fortify::registerView(function () {
-    return view('auth.register');
-});
+// Fortify のビュー設定
+Fortify::registerView(fn () => view('auth.register'));
+Fortify::loginView(fn () => view('auth.login'));
+Fortify::verifyEmailView(fn () => view('auth.verify-email'));
 
-Fortify::loginView(function () {
-    return view('auth.login');
-});
-
-Fortify::verifyEmailView(function () {
-    return view('auth.verify-email');
-});
 
 Route::get('/mypage/profile', function () {
     return view('auth.profile'); 
@@ -43,3 +38,4 @@ Route::post('/logout', function () {
     auth()->logout();
     return redirect('/'); // ログアウト後に index ページへリダイレクト
 })->name('logout');
+
