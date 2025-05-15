@@ -27,10 +27,10 @@
     <div class="product-grid">
         @foreach ($products as $product)
         <div class="product-card">
-            <div class="products-image">
+            <span class="products-image">
             <img src="{{ asset('storage/products-img' . $product->product_image) }}" alt="商品画像" width="max">
-            </div>
-            <div class="product-name">{{ $product->name }}</div>
+            </span>
+            <span class="product-name">{{ $product->name }}</span>
         </div>
         @endforeach
     </div>
