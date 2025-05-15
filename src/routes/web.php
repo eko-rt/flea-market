@@ -38,3 +38,5 @@ Route::post('/logout', function () {
 
 Route::get('/', [ProductController::class, 'index']);
 
+Route::get('/mylist', [ProductController::class, 'mylist'])->name('mylist');
+

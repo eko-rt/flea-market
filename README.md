@@ -1,7 +1,7 @@
 # Flea Market Project
 
 ## Dockerビルド
-1. git clone git@github.com:eko-rt/test-product-sales.git  
+1. git clone git@github.com:eko-rt/flea-market.git  
 2. DockerDesktopアプリを立ち上げる  
 3. docker-compose up -d --build  
 
