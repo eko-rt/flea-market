@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 
@@ -38,5 +40,21 @@ Route::post('/logout', function () {
 
 Route::get('/', [ProductController::class, 'index']);
 
+Route::get('/', [ProductController::class, 'search'])->name('products.search');
+
 Route::get('/mylist', [ProductController::class, 'mylist'])->name('mylist');
 
+
+Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product.show');
+
+// いいね登録・解除
+Route::post('/item/{item_id}/like', [ProductController::class, 'like'])->middleware('auth')->name('product.like');
+Route::delete('/item/{item_id}/like', [ProductController::class, 'unlike'])->middleware('auth')->name('product.unlike');
+
+
+// 商品購入
+Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->middleware('auth')->name('purchase');
+
+
+
+Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');

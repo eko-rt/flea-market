@@ -1,0 +1,223 @@
+.product-detail-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 40px;
+}
+
+.product-detail-main {
+    display: flex;
+    gap: 40px;
+}
+
+/* 左側：商品画像 */
+.product-detail-image {
+    flex: 1;
+    max-width: 50%;
+    aspect-ratio: 1 / 1;
+    /*正方形*/
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+.product-detail-image img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+/* 右側：商品情報 */
+.product-detail-info {
+    flex: 1;
+    max-width: 50%;
+}
+
+.product-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-brand {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.tax-in {
+    font-size: 14px;
+    color: #5F5F5F;
+}
+
+.product-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.product-actions img {
+    width: 20px;
+    height: 20px;
+}
+
+.buy-btn {
+    width: 100%;
+    background-color: #FF5555;
+    color: white;
+    font-size: 18px;
+    padding: 3px 30px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.product-description,
+.product-meta {
+    margin-bottom: 30px;
+}
+
+.product-meta div {
+    margin-bottom: 15px;
+}
+
+.product-meta .tag {
+    background-color: #E5E5E5;
+    padding: 2px 15px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.product-meta strong {
+    margin-right: 30px;
+    font-size: 15px;
+}
+
+.product-comments {
+    margin-top: 30px;
+}
+
+.product-comments h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #5F5F5F;
+}
+
+.comment-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.user-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.comment-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-content .user-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.comment-content p {
+    background-color: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 0;
+    display: inline-block;
+}
+
+.comment-title {
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.comment-btn {
+    width: 100%;
+    background-color: #FF5555;
+    color: white;
+    padding: 8px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.product-actions {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 60px;
+    /* 幅のブレ防止 */
+}
+
+.action-item form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.like-btn.liked img {
+    filter: grayscale(0) brightness(1.2) sepia(1) hue-rotate(-30deg) saturate(4);
+}
+
+.count {
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}

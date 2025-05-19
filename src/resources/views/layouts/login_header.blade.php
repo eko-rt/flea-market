@@ -17,8 +17,14 @@
       <a class="header__logo" href="/">
         <img src="{{ asset('images/logo.svg') }}" alt="Logo" width="35" height="35">
       </a>
-      <form class="header__search">
-        <input type="text" placeholder="なにをお探しですか？" class="header__search-input">
+      <form class="header__search" method="GET" action="/">
+        <input
+          type="text"
+          name="keyword"
+          placeholder="なにをお探しですか？"
+          class="header__search-input"
+          value="{{ old('keyword', $keyword ?? '') }}"
+          >
       </form>
       <nav class="header__nav">
         <ul class="header__nav-list">
