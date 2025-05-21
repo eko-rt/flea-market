@@ -15,9 +15,10 @@
   <header class="header">
     <div class="header__inner">
       <a class="header__logo" href="/">
-        <img src="{{ asset('images/logo.svg') }}" alt="Logo" width="35" height="35">
+        <img src="{{ asset('images/logo.svg') }}" alt="COACHTECH" width="35" height="35">
       </a>
-      <form class="header__search" method="GET" action="/">
+      <form class="header__search" method="GET" action="{{ route('products.index') }}">
+        @csrf
         <input
           type="text"
           name="keyword"

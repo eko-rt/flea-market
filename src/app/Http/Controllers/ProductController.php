@@ -5,41 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\productg;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
+        $tab = $request->query('page', 'recommend');
         $keyword = $request->input('keyword');
     
-        $products = Product::query()
-            // キーワード検索（商品名の部分一致）
-            ->when($keyword, function ($query, $keyword) {
-                $query->where('name', 'like', '%' . $keyword . '%');
-            })
-            // ログイン中なら自分の商品を除外
-            ->when(Auth::check(), function ($query) {
-                $query->where('user_id', '!=', Auth::id());
-            })
-            ->get();
-    
-        return view('index', compact('products', 'keyword'));
-    }
-
-    public function search(Request $request)
-    {
-        $keyword = $request->input('keyword');
-
-        $query = Product::query();
-
-        if (!empty($keyword)) {
-            $query->where('name', 'like', '%' . $keyword . '%');
+        if ($tab === 'mylist' && auth()->check()) {
+            $user = auth()->user();
+            $products = $user->likes()->with('product')->get()->pluck('product');
+        } else {
+            $products = Product::query()
+                ->when($keyword, fn($q) => $q->where('name', 'like', "%{$keyword}%"))
+                ->when(auth()->check(), fn($q) => $q->where('user_id', '!=', auth()->id()))
+                ->get();
         }
-
-        $products = $query->get();
-
-        return view('auth.index', compact('products', 'keyword'));
+    
+        return view('auth.index', compact('products', 'tab', 'keyword'));
     }
 
     public function like($item_id)
@@ -62,24 +46,7 @@ class ProductController extends Controller
         return back();
     }
     
-
     
-    //修正する
-    public function mylist()
-    {
-        if (!auth()->check()) {
-            return view('auth.index', ['products' => collect(), 'tab' => 'mylist']);
-        }
-
-        $user = auth()->user();
-        // いいねした商品のみ取得（likesテーブルのリレーションがある場合）
-        $products = $user->likes()->with('product')->get()->pluck('product');
-
-        return view('auth.index', [
-        'products' => $products,
-        'tab' => 'mylist'
-        ]);
-    }
 
 
     public function show($item_id)

@@ -15,12 +15,20 @@
 @section('content')
 <div class="container">
     <div class="tabs">
+        <a href="{{ route('products.index') }}"
+            class="tab {{ empty($tab ?? '') || $tab ?? ''==='recommend' ? 'active' : '' }}">
+            おすすめ
+        </a>
         @auth
-            <a href="#" class="tab active">おすすめ</a>
-            <a href="#" class="tab">マイリスト</a>
+        <a href="{{ route('products.index', ['page' => 'mylist']) }}"
+        class="tab {{ ($tab ?? '') === 'mylist' ? 'active' : '' }}">
+        マイリスト
+        </a>
         @else
-            <a href="#" class="tab active">おすすめ</a>
-            <a href="#" class="tab">マイリスト</a>
+        <a href="{{ route('login') }}"
+           class="tab {{ ($tab ?? '') === 'mylist' ? 'active' : '' }}">
+            マイリスト
+        </a>
         @endauth
     </div>
 
@@ -28,8 +36,11 @@
     @foreach ($products as $product)
         <div class="product-card">
             <a href="{{ route('product.show', $product->id) }}">
-                <span class="products-image">
-                    <img src="{{ asset('storage/product-img/' . $product->product_image) }}" alt="商品画像">
+                <span class="product-image">
+                    <img src="{{ asset('storage/products-img/' . $product->product_image) }}" alt="商品画像">
+                    @if($product->sold_out)
+                        <span class="sold-label">sold</span>
+                    @endif
                 </span>
                 <span class="product-name">{{ $product->name }}</span>
             </a>

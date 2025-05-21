@@ -35,7 +35,7 @@
                 @if($product->likes->where('user_id', auth()->id())->count())
                     @method('DELETE')
                     <button type="submit" class="like-btn liked">
-                    <img src="{{ asset('images/star.png') }}" alt="Like" style="filter: hue-rotate(45deg); width: 24px; height: 24px;">
+                    <img src="{{ asset('images/star_.png') }}" alt="Like" style="filter: hue-rotate(45deg); width: 24px; height: 24px;">
                     </button>
                 @else
                     <button type="submit" class="like-btn">

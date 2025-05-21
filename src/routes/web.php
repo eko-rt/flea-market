@@ -38,11 +38,7 @@ Route::post('/logout', function () {
     return redirect('/'); // ログアウト後に index ページへリダイレクト
 })->name('logout');
 
-Route::get('/', [ProductController::class, 'index']);
-
-Route::get('/', [ProductController::class, 'search'])->name('products.search');
-
-Route::get('/mylist', [ProductController::class, 'mylist'])->name('mylist');
+Route::get('/', [ProductController::class, 'index'])->name('products.index');
 
 
 Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product.show');
@@ -56,5 +52,6 @@ Route::delete('/item/{item_id}/like', [ProductController::class, 'unlike'])->mid
 Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->middleware('auth')->name('purchase');
 
 
-
+// コメント投稿
 Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
+
