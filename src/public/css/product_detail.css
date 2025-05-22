@@ -205,9 +205,11 @@ textarea {
     cursor: pointer;
 }
 
+/*
 .like-btn.liked img {
     filter: grayscale(0) brightness(1.2) sepia(1) hue-rotate(-30deg) saturate(4);
 }
+*/
 
 .count {
     margin-top: 4px;

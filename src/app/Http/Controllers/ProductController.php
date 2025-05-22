@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $tab = $request->query('page', 'recommend');
+        $tab = $request->query('tab', 'recommend');
         $keyword = $request->input('keyword');
     
         if ($tab === 'mylist' && auth()->check()) {

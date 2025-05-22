@@ -15,24 +15,26 @@
 @section('content')
 <div class="container">
     <div class="tabs">
-        <a href="{{ route('products.index') }}"
-            class="tab {{ empty($tab ?? '') || $tab ?? ''==='recommend' ? 'active' : '' }}">
+        <a href="{{ route('products.index', ['tab' => 'recommend']) }}"
+            class="tab {{ $tab === 'recommend' ? 'active' : '' }}">
             おすすめ
         </a>
         @auth
-        <a href="{{ route('products.index', ['page' => 'mylist']) }}"
-        class="tab {{ ($tab ?? '') === 'mylist' ? 'active' : '' }}">
+        <a href="{{ route('products.index', ['tab' => 'mylist']) }}"
+        class="tab {{ $tab === 'mylist' ? 'active' : '' }}">
         マイリスト
         </a>
         @else
-        <a href="{{ route('login') }}"
-           class="tab {{ ($tab ?? '') === 'mylist' ? 'active' : '' }}">
+        <a href="{{ route('products.index' , ['tab' => 'mylist']) }}"
+           class="tab {{ $tab === 'mylist' ? 'active' : '' }}">
             マイリスト
         </a>
         @endauth
     </div>
 
     <div class="product-grid">
+    @if($tab === 'mylist' && !Auth::check())
+    @else
     @foreach ($products as $product)
         <div class="product-card">
             <a href="{{ route('product.show', $product->id) }}">
@@ -46,6 +48,7 @@
             </a>
         </div>
     @endforeach
+    @endif
     </div>
 </div>
 @endsection
