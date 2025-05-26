@@ -62,7 +62,7 @@
 .shipping-address {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #000;   
 }
 
 .shipping-title {
@@ -71,6 +71,12 @@
     font-size: 24px;
     padding-left: 30px;
     justify-content: space-between;
+}
+
+.shipping-info{
+    padding-left: 100px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .change-link {
@@ -116,7 +122,18 @@
     
 .product-price {
     margin: 8px 0 0;
-    font-size: 24px; 
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.product-price .sign {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.product-price .price {
+    font-size: 30px;
 }
 
 .form-group {
@@ -130,3 +147,23 @@
     margin-bottom: 30px;
     padding-left: 30px;
 }
+
+.payment-method {
+    padding: 3px 3px;
+    margin-left: 100px;
+    padding-right: 80px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #636769;
+    font-weight: bold;
+}
+
+
+#payment_method option {
+    background-color: #636769;
+    color: #fff;
+}
+
+/* カーソルを合わせたときの背景色（ホバー） */
+#payment_method option:hover {
+    background-color: #e0e0e0; }

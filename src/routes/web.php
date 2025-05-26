@@ -63,3 +63,5 @@ Route::get('/purchase/address/{item_id}', function($item_id) {
 })->name('address.edit')->middleware('auth');
 
 Route::post('/purchase/address/{item_id}', [ProfileController::class, 'updateAddress'])->name('address.update')->middleware('auth');
+
+Route::get('/mypage', [ProfileController::class, 'mypage'])->name('mypage');

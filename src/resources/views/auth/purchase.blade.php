@@ -24,13 +24,16 @@
         </div>
         <div class="product-info">
             <h1 class="product-name">{{ $product->name }}</h1>
-            <p class="product-price">¥{{ number_format($product->price) }}</p>
+            <p class="product-price">
+              <span class="sign">¥ </span>
+              <span class="price">{{ number_format($product->price) }}</span>
+            </p>
         </div>
     </div>
 
     <h2 class="payment-method-title">支払い方法</h2>
     <div class="form-group">
-      <select id="payment_method" name="payment_method" required>
+      <select id="payment_method" name="payment_method" class="payment-method" required>
         <option value="" disabled selected hidden>選択してください</option>
         @foreach($payment_methods as $method)
           <option value="{{ $method->id }}">{{ $method->name }}</option>
@@ -44,7 +47,7 @@
         <a href={{route('address.edit', $product->id)}} class="change-link">変更する</a>
       </div>
       <div class="shipping-info">
-        〒{{ auth()->user()->post_code }}<br>
+        〒 {{ auth()->user()->post_code }}<br>
         {{ auth()->user()->address }}<br>
         {{ auth()->user()->building_name }}
       </div>

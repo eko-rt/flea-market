@@ -23,4 +23,18 @@ class ProfileController extends Controller
         // 商品購入画面にリダイレクト
         return redirect()->route('purchase.show', $item_id)->with('success', '住所を更新しました');
     }
+
+
+    public function mypage(Request $request)
+    {
+        $tab = $request->query('tab', 'listing');
+        $user = auth()->user();
+
+        $listedProducts    = $user->products;             // 出品した商品
+        $purchasedProducts = $user->purchases->map->product; // 購入履歴から商品を取得
+
+        return view('auth.mypage', compact('tab', 'listedProducts', 'purchasedProducts'));
+    }
 }
+
+
