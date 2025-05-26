@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Like;
+use App\Models\PaymentMethod;
 
 class ProductController extends Controller
 {
@@ -48,11 +50,11 @@ class ProductController extends Controller
     
     
 
-
     public function show($item_id)
     {
         $product = Product::findOrFail($item_id);
-        return view('auth.product_detail', compact('product'));
+
+        return view('auth.product_detail', compact('product' ));
     }
 }
 

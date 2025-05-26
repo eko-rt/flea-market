@@ -6,7 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +55,11 @@ Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->mid
 Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->middleware('auth')->name('purchase.show');
 
 Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->middleware('auth')->name('purchase.store');
+
+
+Route::get('/purchase/address/{item_id}', function($item_id) {
+    $product = \App\Models\Product::findOrFail($item_id);
+    return view('auth.address', compact('product'));
+})->name('address.edit')->middleware('auth');
+
+Route::post('/purchase/address/{item_id}', [ProfileController::class, 'updateAddress'])->name('address.update')->middleware('auth');
