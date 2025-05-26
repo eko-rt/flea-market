@@ -52,10 +52,7 @@
             </div>
         </div>
 
-            <form method="POST" action="{{ route    ('purchase', $product->id) }}">
-                @csrf
-                <button type="submit" class="buy-btn">購入手続きへ</button>
-            </form>
+            <a href="{{ route('purchase.show', $product->id) }}" class="buy-btn">購入手続きへ</a>
 
             <div class="product-description">
                 <h3>商品説明</h3>

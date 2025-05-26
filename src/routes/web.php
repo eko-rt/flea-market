@@ -48,10 +48,10 @@ Route::post('/item/{item_id}/like', [ProductController::class, 'like'])->middlew
 Route::delete('/item/{item_id}/like', [ProductController::class, 'unlike'])->middleware('auth')->name('product.unlike');
 
 
-// 商品購入
-Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->middleware('auth')->name('purchase');
-
-
 // コメント投稿
 Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
 
+// 購入手続き
+Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->middleware('auth')->name('purchase.show');
+
+Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->middleware('auth')->name('purchase.store');

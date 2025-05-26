@@ -69,7 +69,9 @@
 }
 
 .buy-btn {
+    display:block;
     width: 100%;
+    text-align: center;
     background-color: #FF5555;
     color: white;
     font-size: 18px;
@@ -78,6 +80,7 @@
     border-radius: 4px;
     font-weight: bold;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 .product-description,
