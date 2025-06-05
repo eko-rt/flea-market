@@ -15,7 +15,7 @@ class ConditionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('conditions')->truncate();
+        DB::table('conditions')->delete();
 
         $conditions = ['良好', '目立った傷や汚れなし', 'やや傷や汚れあり', '状態が悪い'];
 

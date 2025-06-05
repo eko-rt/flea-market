@@ -1,3 +1,6 @@
+
+
+
 @extends('layouts.common')
 
 @section('css')
@@ -65,10 +68,16 @@
             </div>
 
             <div class="product-meta">
-                <h3>商品の情報</h3>
+            <h3>商品の情報</h3>
                 <div class="category">
-                    <strong>カテゴリー</strong>
-                    <span class="tag">{{ $product->category->name ?? '-' }}</span>
+                <strong>カテゴリー</strong>
+                    @if($product->categories->isNotEmpty())
+                        @foreach($product->categories as $cat)
+                            <span class="tag">{{ $cat->name }}</span>
+                        @endforeach
+                    @else
+                        <span class="tag">-</span>
+                    @endif
                 </div>
                 <div class="condition">
                     <strong>商品の状態</strong>
