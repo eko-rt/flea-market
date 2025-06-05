@@ -91,15 +91,32 @@
 }
 
 
-.sold-label {
+.sold-ribbon {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 0px;
+    left: 0px;
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+    transform: rotate(-45deg) translate(-18px, -10px);
+    background: #ff5f5f;
     color: #fff;
+    text-align: center;
     font-weight: bold;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 0;
     z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    letter-spacing: 0.1em;
     pointer-events: none;
+}
+
+.product-image {
+    position: relative;
+}
+
+.alert-danger {
+    color: #ff0000  !important;
+    font-weight: bold !important;
+    font-size: 24px !important;
 }

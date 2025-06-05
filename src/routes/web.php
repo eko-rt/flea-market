@@ -7,6 +7,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,6 @@ Fortify::verifyEmailView(fn () => view('auth.verify-email'));
 Route::get('/mypage/profile', function () {
     return view('auth.profile'); 
 })->name('profile')->middleware('auth');
-
-Route::get('/mypage', function () {
-    return view('auth.mypage'); 
-})->name('mypage')->middleware('auth');
 
 Route::post('/logout', function () {
     auth()->logout();
@@ -64,4 +61,13 @@ Route::get('/purchase/address/{item_id}', function($item_id) {
 
 Route::post('/purchase/address/{item_id}', [ProfileController::class, 'updateAddress'])->name('address.update')->middleware('auth');
 
-Route::get('/mypage', [ProfileController::class, 'mypage'])->name('mypage');
+Route::get('/mypage', [ProfileController::class, 'mypage'])->name('mypage')->middleware('auth');
+
+
+Route::match(['put', 'post'], '/mypage/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+// 出品画面表示（GET）
+Route::get('/sell', [SellController::class, 'create'])->name('sell.create')->middleware('auth');
+
+// 出品処理（POST）
+Route::post('/sell', [SellController::class, 'store'])->name('sell.store')->middleware('auth');

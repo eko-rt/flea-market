@@ -32,7 +32,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($item_id);
         $user = auth()->user();
-        // すでにいいねしていなければ登録
+        // いいねしていなければ登録
         if (!$product->likes()->where('user_id', $user->id)->exists()) {
         $product->likes()->create(['user_id' => $user->id]);
         }

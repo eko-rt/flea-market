@@ -31,7 +31,7 @@
         <ul class="header__nav-list">
           <li><a href="{{ route('login') }}" class="header__nav-link">ログイン</a></li>
           <li><a href="{{ route('login') }}" class="header__nav-link">マイページ</a></li>
-          <li><a href="/sell" class="header__nav-link">出品</a></li>
+          <li><a href="{{ route('login') }}" class="header__nav-link">出品</a></li>
         </ul>
       </nav>
     </div>

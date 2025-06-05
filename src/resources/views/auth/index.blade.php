@@ -13,6 +13,13 @@
 @endsection
 
 @section('content')
+
+@if(session('error'))
+  <div class="alert-danger">
+    {{ session('error') }}
+  </div>
+@endif
+
 <div class="container">
     <div class="tabs">
         <a href="{{ route('products.index', ['tab' => 'recommend']) }}"
@@ -41,7 +48,7 @@
                 <span class="product-image">
                     <img src="{{ asset('storage/products-img/' . $product->product_image) }}" alt="商品画像">
                     @if($product->sold_out)
-                        <span class="sold-label">sold</span>
+                        <span class="sold-ribbon">sold</span>
                     @endif
                 </span>
                 <span class="product-name">{{ $product->name }}</span>

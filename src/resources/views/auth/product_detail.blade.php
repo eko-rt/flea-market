@@ -18,7 +18,12 @@
     <div class="product-detail-main">
         <!-- 左：画像 -->
         <div class="product-detail-image">
+            <div class="image-inner">
             <img src="{{ asset('storage/products-img/' . $product->product_image) }}" alt="商品画像">
+            @if($product->sold_out)
+                <span class="sold-ribbon">sold</span>
+            @endif
+            </div>
         </div>
 
         <!-- 右：商品情報 -->

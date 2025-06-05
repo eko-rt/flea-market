@@ -11,20 +11,55 @@
 
 /* 左側：商品画像 */
 .product-detail-image {
+    position: relative;
+    overflow: hidden;
     flex: 1;
     max-width: 50%;
     aspect-ratio: 1 / 1;
-    /*正方形*/
     display: flex;
     justify-content: center;
     align-items: flex-start;
     margin-top: 30px;
 }
 
+.image-inner {
+    position: relative;
+    display: inline-block;
+}
+
 .product-detail-image img {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
+    display: block;
+}
+
+.sold-ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: #ff5f5f;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    z-index: 2;
+    font-size: 0;
+    line-height: 0;
+}
+
+.sold-ribbon::after {
+    content: "sold";
+    position: absolute;
+    top: 35px;
+    left: 8px;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    white-space: nowrap;
 }
 
 /* 右側：商品情報 */
@@ -226,3 +261,4 @@ textarea {
     font-size: 14px;
     margin-top: 10px;
 }
+

@@ -1,0 +1,128 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 40px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff6b6b;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.btn:hover {
+    background-color: #ff4c4c;
+}
+
+/* 「画像を選択する」ボタン専用 */
+.btn-secondary {
+    width: auto !important;
+    padding: 6px 12px;
+    color: #ff6b6b;
+    background-color: #fff;
+    border: 1px solid #ff6b6b;
+    border-radius: 5px;
+    margin-top: 0;
+    font-weight: bold;
+}
+
+/* ホバー時 */
+.btn-secondary:hover {
+    background-color: #ff6b6b;
+    color: #fff; }
+
+
+
+.form-footer {
+    margin-top: 15px;
+}
+
+.form-footer .link {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-footer .link:hover {
+    text-decoration: underline;
+}
+
+
+.profile-image {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-image .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-image .btn {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 14px;
+}
