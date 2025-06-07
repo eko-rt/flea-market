@@ -1,18 +1,20 @@
 /* コンテナ */
 .container {
     width: 100%;
-    max-width: 1060px;
+    max-width: 1540px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 40px;
     box-sizing: border-box;
 }
 
 /* タブ */
 .tabs {
     display: flex;
-    gap: 26x;
+    gap: 30px;
     margin-bottom: 32px;
     position: relative;
+    padding-left: 80px;
+    font-size: 24px;
 }
 
 .tabs::after {
@@ -32,26 +34,39 @@
     position: relative;
     z-index: 1;
     padding: 15px 15px;
-    font-size: 16px;
+    font-size: 20px;
     color: #666;
     text-decoration: none;
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
-    margin-top: 20px; 
+    margin-top: 30px; 
     font-weight: bold;
 }
 
 .tab.active {
     color: red;
     border-bottom: 2px;
+    font-weight: bold;
 }
 
 /* 商品グリッド */
 .product-grid {
+    width: calc(100vw - 60px);
+    margin-left: calc((100% - (100vw - 60px)) / -2);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px; 
+    grid-template-columns: repeat(4, minmax(240px, 1fr));
+    gap: 60px; 
+    width: 100%;
+    margin: 0;
+    padding-top: 20px;
 }
+    
+/* タブレット */
+@media (max-width:850px) and (min-width:768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    } }
 
 /* 商品カード */
 .product-card a {
@@ -62,8 +77,8 @@
 /* 商品画像枠 */
 .product-image {
     display: block;
-    width: 100%;
-    padding-top: 100%;
+    width: 85%;
+    padding-top: 85%;
     position: relative;
     overflow: hidden;
 }
@@ -84,10 +99,11 @@
 .product-name {
     display: block;
     margin-top: 8px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     text-align: left;
     word-break: break-all;
+    color: black;
 }
 
 

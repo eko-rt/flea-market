@@ -49,7 +49,7 @@
       $items = request('tab') === 'purchased' ? $purchasedProducts : $listedProducts;
     @endphp
 
-    @forelse($items as $product)
+    @foreach($items as $product)
       <div class="product-card">
         <a href="{{ route('product.show', $product->id) }}">
           <div class="product-image">
@@ -61,9 +61,7 @@
           <div class="product-name">{{ $product->name }}</div>
         </a>
       </div>
-    @empty
-      <p class="no-items">まだ商品がありません。</p>
-    @endforelse
+    @endforeach
   </div>
 </div>
 @endsection

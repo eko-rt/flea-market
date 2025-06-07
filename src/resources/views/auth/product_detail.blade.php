@@ -33,7 +33,11 @@
         <div class="product-detail-info">
         <h2 class="product-title">{{ $product->name }}</h2>
             <div class="product-brand">{{ $product->brand_name ?? '' }}</div>
-            <div class="product-price">¥{{ number_format($product->price) }} <span class="tax-in">(税込)</span></div>
+            <div class="product-price">
+                <span class="yen-sign">￥</span>
+                <span class="price-amount">{{ number_format($product->price) }}</span>
+                <span class="tax-in">(税込)</span>
+            </div>
 
         <div class="product-actions">
             <div class="action-item">
@@ -90,12 +94,15 @@
 
                 @foreach($product->comments as $comment)
                 <div class="comment-box">
-                    <div class="user-icon">
-                        <img src="{{ asset('storage/user-icons/' . ($comment->user->icon ?? 'default.png')) }}" alt="" style="width: 100%; height: 100%; border-radius: 50%;">
+                    <div class="comment-header">
+                        <div class="user-icon">
+                            <img src="{{ asset('storage/profile-img/' . ($comment->user->profile_image ?? 'default.png')) }}"
+                            alt="{{ $comment->user->name }}">
+                        </div>
+                        <div class="user-name">{{ $comment->user->name }}</div>
                     </div>
                     <div class="comment-content">
-                        <div class="user-name">{{ $comment->user->name }}</div>
-                        <p>{{ $comment->content }}</p>
+                    {{ $comment->content }}
                     </div>
                 </div>
                 @endforeach
