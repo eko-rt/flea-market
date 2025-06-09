@@ -60,7 +60,9 @@
     <div class="summary-box">
       <div class="summary-row">
         <span>商品代金</span>
-        <span>¥{{ number_format($product->price) }}</span>
+        <span class="price">
+          <span class="yen-mark">¥</span>{{ number_format($product->price) }}
+        </span>
       </div>
       <div class="summary-row">
         <span>支払い方法</span>

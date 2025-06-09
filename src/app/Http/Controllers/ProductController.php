@@ -17,7 +17,16 @@ class ProductController extends Controller
     
         if ($tab === 'mylist' && auth()->check()) {
             $user = auth()->user();
-            $products = $user->likes()->with('product')->get()->pluck('product');
+            // いいねした商品を取得し、キーワードで絞り込み
+            $products = $user->likes()
+                ->with('product')
+                ->get()
+                ->pluck('product')
+                ->filter(function ($product) use ($keyword) {
+                    if (!$keyword) return true;
+                    return strpos($product->name, $keyword) !== false;
+                })
+                ->values();
         } else {
             $products = Product::query()
                 ->when($keyword, fn($q) => $q->where('name', 'like', "%{$keyword}%"))

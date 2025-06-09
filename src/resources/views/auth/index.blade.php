@@ -22,17 +22,17 @@
 
 <div class="container">
     <div class="tabs">
-        <a href="{{ route('products.index', ['tab' => 'recommend']) }}"
+        <a href="{{ route('products.index', ['tab' => 'recommend', 'keyword' => $keyword]) }}"
             class="tab {{ $tab === 'recommend' ? 'active' : '' }}">
             おすすめ
         </a>
         @auth
-        <a href="{{ route('products.index', ['tab' => 'mylist']) }}"
+        <a href="{{ route('products.index', ['tab' => 'mylist', 'keyword' => $keyword]) }}"
         class="tab {{ $tab === 'mylist' ? 'active' : '' }}">
         マイリスト
         </a>
         @else
-        <a href="{{ route('products.index' , ['tab' => 'mylist']) }}"
+        <a href="{{ route('products.index' , ['tab' => 'mylist', 'keyword' => $keyword]) }}"
            class="tab {{ $tab === 'mylist' ? 'active' : '' }}">
             マイリスト
         </a>

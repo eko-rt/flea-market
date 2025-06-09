@@ -55,7 +55,7 @@
     margin-left: calc((100% - (100vw - 60px)) / -2);
     display: grid;
     grid-template-columns: repeat(4, minmax(240px, 1fr));
-    gap: 60px; 
+    gap: 50px; 
     width: 100%;
     margin: 0;
     padding-top: 20px;
