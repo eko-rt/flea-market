@@ -32,7 +32,7 @@
           <li>
             <form method="POST" action="{{ route('logout') }}" style="display: inline;">
               @csrf
-              <button type="submit" class="header__nav-link" style="background: none; border: none; color: inherit; cursor: pointer;">
+              <button type="submit" class="header__nav-link" >
                 ログアウト
               </button>
             </form>

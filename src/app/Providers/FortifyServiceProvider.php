@@ -42,16 +42,19 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
         Fortify::registerView(fn () => view('auth.register'));
         Fortify::loginView(fn () => view('auth.login'));
+        Fortify::registerView(fn() => view('auth.register'));
+        Fortify::loginView   (fn() => view('auth.login'));
+        Fortify::verifyEmailView(fn() => view('auth.verify-email'));
 
-        // 会員登録後のリダイレクト先を設定
-        $this->app->singleton   (RegisterResponseContract::class, function () {
-        return new class implements     RegisterResponseContract {
-            public function toResponse($request):   RedirectResponse
-             {
-                    return redirect('/mypage/profile'); 
+        $this->app->singleton(RegisterResponseContract::class, function () {
+            return new class implements RegisterResponseContract {
+                public function toResponse($request): RedirectResponse
+                {
+                    return redirect()->route('verification.notice');
                 }
             };
         });
+
 
         // プロフィール更新後のリダイレクト先を設定
         $this->app->singleton(UpdateProfileInformationResponseContract::class, fn () =>
@@ -91,7 +94,7 @@ class FortifyServiceProvider extends ServiceProvider
             ]);
         });
 
-        // ログインのレートリミットを緩和（例: 100回/1分）
+        // ログインのレートリミットを緩和（100回/1分）
         RateLimiter::for('login', fn (Request $request) =>
     Limit::perMinute(100)->by($request->ip())
 );

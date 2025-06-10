@@ -8,6 +8,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,26 @@ use App\Http\Controllers\SellController;
 Fortify::registerView(fn () => view('auth.register'));
 Fortify::loginView(fn () => view('auth.login'));
 Fortify::verifyEmailView(fn () => view('auth.verify-email'));
+
+Route::middleware('auth')->group(function () {
+    // 1. 認証待ちページ（verification.notice）
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->name('verification.notice');
+
+    // 2. メールリンククリック後の認証処理（verification.verify）
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        // 認証完了後の遷移先を指定
+        return redirect('/mypage/profile');  
+    })->middleware('signed')->name('verification.verify');
+
+    // 3. 認証メール再送（verification.send）
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('status', '認証メールを再送信しました。');
+    })->middleware('throttle:6,1')->name('verification.send');
+});
 
 
 Route::get('/mypage/profile', function () {
