@@ -43,3 +43,35 @@
     color: #666;
     margin-top: 20px;
 }
+
+/* タブレット（768px〜850px）*/
+@media (min-width: 768px) and (max-width: 850px) {
+
+    .mypage-profile {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .profile-info {
+        gap: 30px;
+    }
+
+    .profile-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .username {
+        font-size: 20px;
+    }
+
+    .btn.edit-profile {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+}

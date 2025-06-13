@@ -6,6 +6,7 @@ use App\Modedls\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Condition;
+use App\Http\Requests\StoreProductRequest;
 
 class SellController extends Controller
 {
@@ -17,19 +18,10 @@ class SellController extends Controller
         return view('auth.sell', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
     
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'brand_name' => 'nullable|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|integer|min:1',
-            'condition_id' => 'required|exists:conditions,id',
-            'categories' => 'required|array',
-            'categories.*' => 'exists:categories,id',
-            'image' => 'nullable|image|max:2048',
-        ]);
+        $validated = $request->validated();
 
         // 画像保存
         $imagePath = null;

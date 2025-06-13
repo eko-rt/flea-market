@@ -173,7 +173,7 @@
     color: #fff;
 }
 
-/* カーソルを合わせたときの背景色（ホバー） */
+/* カーソルを合わせたときの背景色 */
 #payment_method option:hover {
     background-color: #e0e0e0;
 }

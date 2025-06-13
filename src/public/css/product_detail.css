@@ -37,7 +37,7 @@
 
 .sold-ribbon {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 0;
     width: 80px;
     height: 80px;
@@ -279,3 +279,67 @@ textarea {
     margin-top: 10px;
 }
 
+
+
+/* タブレット（768px〜850px） */
+@media (min-width: 768px) and (max-width: 850px) {
+    .container {
+        max-width: 400px;
+        width: 90%;
+        margin: 40px auto;
+        padding: 15px;
+    }
+    
+    .form-group input {
+        display: block;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .product-detail-container {
+        width: 90%;
+        padding: 20px 20px;
+    }
+
+    .product-detail-main {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .product-detail-image {
+        width: 40%;
+        max-width: 40%;
+        aspect-ratio: 1 / 1;
+        margin-top: 0;
+    }
+
+    .product-detail-info {
+        width: 60%;
+        max-width: 60%;
+    }
+
+    .product-title {
+        font-size: 24px;
+    }
+
+    .price-amount {
+        font-size: 24px;
+    }
+
+    .yen-sign,
+    .tax-in {
+        font-size: 14px;
+    }
+
+    .buy-btn {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .product-actions {
+        gap: 12px;
+    } 
+}

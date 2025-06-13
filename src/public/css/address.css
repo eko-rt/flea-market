@@ -1,21 +1,19 @@
 .address-container {
     max-width: 500px;
-    margin: 40px auto;
+    margin: 30px auto;
     background: #fff;
-    padding: 40px 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 15px 30px;
 }
 
 .address-title {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 50px;
     font-size: 24px;
     font-weight: bold;
 }
 
 .address-form .form-group {
-    margin-bottom: 24px;
+    margin-bottom: 30px;
 }
 
 .address-form label {
@@ -42,9 +40,38 @@
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 16px;
+    margin-top: 30px;
 }
 
 .update-btn:hover {
     background: #e04a4a;
 }
+
+/*PC（1400px〜1540px）*/
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .address-container {
+        padding: 30px 20px;
+    }
+}
+
+/*タブレット（768px〜850px）*/
+@media (min-width: 768px) and (max-width: 850px) {
+    .address-container {
+        margin: 20px auto;
+        padding: 30px 20px;
+    }
+
+    .address-title {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .address-form input[type="text"] {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .update-btn {
+        font-size: 16px;
+        padding: 10px 0;
+    } }

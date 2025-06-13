@@ -1,35 +1,48 @@
-
 .listing-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 30px 40px;
+    padding: 20px 40px;
 }
 
 .listing-title {
     text-align: center;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     margin-bottom: 40px;
 }
 
 
 .listing-section+.listing-section {
-    border-top: 1px solid #ddd;
-    padding-top: 40px;
-    margin-top: 40px;
+    border-top: none;
+    padding-top: 20px;
+    margin-top: 30px;
 }
 
-/* ====== セクション見出し ====== */
-.section-heading {
-    font-size: 18px;
-    font-weight: bold;
+.listing-section:not(:first-of-type) .section-heading {
+    color:#636769;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
     margin-bottom: 20px;
+} 
+
+.listing-section:first-of-type .section-heading {
+    margin-bottom: 8px;
+    font-size: 20px;
 }
 
-/* ====== 画像アップロード枠 Centralized ====== */
+/*セクション見出し*/
+.section-heading {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* 画像アップロード枠*/
 .image-upload-wrapper {
     max-width: 800px;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
 }
 
 .image-upload-box {
@@ -67,7 +80,7 @@
     object-fit: contain;
     z-index: 1;
     display: none;
-    /* 初期は非表示。JSで表示切替 */ 
+    /* 初期は非表示。JSで表示切替する */
     pointer-events: auto;
     cursor: pointer;
 }
@@ -77,20 +90,26 @@
 }
 
 
-/* ====== フォーム共通 ====== */
+/*フォーム共通*/
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: visible;
+    z-index: 0;
 }
 
 .form-group-label {
     display: block;
     margin-bottom: 6px;
     font-weight: bold;
-    font-size: 14px;
-    color: #333;
+    font-size: 16px;
 }
 
-/* テキスト系やセレクト等の入力欄 */
+.form-group-label+.categories {
+    margin-top: 18px;
+}
+
+/* 入力欄 */
 .form-control {
     width: 100%;
     padding: 8px 12px;
@@ -100,7 +119,6 @@
     box-sizing: border-box;
 }
 
-/* ====== カテゴリータグ ====== */
 .categories {
     display: flex;
     flex-wrap: wrap;
@@ -108,7 +126,7 @@
 }
 
 .category-tag input[type="checkbox"] {
-    display: none; 
+    display: none;
 }
 
 .category-tag {
@@ -129,8 +147,10 @@
     background-color: #FF5555;
     color: #fff;
 }
+
 .category-tag .category-label-text {
-    display: inline-block; }
+    display: inline-block;
+}
 
 .category-tag:has(input[type="checkbox"]:checked) {
     background-color: #FF5555;
@@ -139,9 +159,9 @@
 }
 
 
-/* ====== 価格入力 ====== */
+/*価格入力*/
 .price-input-wrapper {
-    position: relative; 
+    position: relative;
 }
 
 .currency-symbol {
@@ -164,7 +184,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-/* ====== 出品ボタン ====== */
+/*出品ボタン*/
 .submit-btn-wrapper {
     text-align: center;
     margin-top: 50px;
@@ -185,4 +205,125 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .submit-btn:hover {
     background-color: #e14c4c;
+}
+
+.custom-select {
+    position: relative;
+    z-index: 1;
+    appearance: none;
+    width: 100%;
+    padding: 8px 12px;
+    padding-right: 32px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.custom-select:focus {
+    outline: none;
+}
+
+.custom-select option {
+    background-color: #636769;
+    color:#ccc;
+    padding: 4px 8px;
+}
+
+.custom-select option:checked {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.custom-select option:hover {
+    background-color: #e5e5e5;
+}
+
+.error {
+    color: #FF5555;
+    font-size: 16px;
+    margin-top: 8px;
+    font-weight: bold;
+    display: block;
+}
+
+
+
+/*タブレット（768px〜850px）*/
+@media (min-width: 768px) and (max-width: 850px) {
+    .listing-container {
+        max-width: 90%;
+        width: 100%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .listing-title {
+        font-size: 22px;
+        margin-bottom: 24px;
+    }
+
+    .listing-section {
+        padding-top: 30px;
+        margin-top: 30px;
+    }
+
+    .listing-section:first-of-type .section-heading {
+        margin-top: 0;
+        margin-bottom: 12px;
+    }
+
+    .image-upload-wrapper {
+        max-width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .image-upload-box {
+        height: 180px;
+    }
+
+    #product-image-preview {
+        max-height: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-group-label {
+        font-size: 14px;
+    }
+
+    .form-control,
+    .price-input {
+        font-size: 14px;
+        padding: 6px 10px;
+        max-width: 100%;
+    }
+
+    .categories {
+        gap: 8px;
+    }
+
+    .category-tag {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+
+    .price-input-wrapper {
+        margin-bottom: 8px;
+    }
+
+    .submit-btn-wrapper {
+        margin-top: 30px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+        padding: 12px 0;
+    }
 }

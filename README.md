@@ -13,14 +13,28 @@
 3. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成  
 4. .envに以下の環境変数を追加  
 
-``` text
+```dotenv
 DB_CONNECTION=mysql  
 DB_HOST=mysql  
 DB_PORT=3306  
 DB_DATABASE=laravel_db  
 DB_USERNAME=laravel_user  
 DB_PASSWORD=laravel_pass  
-```
+
+# — メール認証機能 （mailtrapを使用）—
+MAIL_MAILER=smtp  
+MAIL_HOST=（MailtrapのHost）  
+MAIL_PORT=2525=（Mailtrap の Port）
+MAIL_USERNAME=（Mailtrap の Username）  
+MAIL_PASSWORD=（Mailtrap の Password）  
+MAIL_ENCRYPTION=null  
+MAIL_FROM_ADDRESS=hello@example.com  
+MAIL_FROM_NAME="${APP_NAME}"  
+MAILTRAP_INBOX_URL=https://mailtrap.io/inboxes/123456  
+```  
+
+※MAILTRAP_INBOX_URLの123456 は自分の Inbox ID に置き換えてください
+
 
 5. アプリケーションキーの作成  
 
@@ -60,6 +74,7 @@ php artisan storage:link
 - PHP7.4.9  
 - Laravel8.83.27  
 - MySQL8.0.26  
+- Mailtrap（メール認証テスト用）
 
 ## 1.5. ER図  
 

@@ -20,6 +20,9 @@
           <img id="product-image-preview" src="" alt="プレビュー画像" style="display: none;">
         </label>
       </div>
+      @error('product_image')
+        <span class="error">{{ $message }}</span>
+      @enderror
     </div>
 
     <div class="listing-section">
@@ -34,32 +37,46 @@
           </label>
           @endforeach
         </div>
+        @error('categories')
+          <span class="error">{{ $message }}</span>
+        @enderror
       </div>
 
       <div class="form-group">
         <label for="condition" class="form-group-label">商品の状態</label>
-        <select id="condition" name="condition_id" class="form-control">
-          <option value="" disabled selected>選択してください</option>
+        <select id="condition" name="condition_id" class="form-control custom-select">
+          <option value="" disabled selected hideen>選択してください</option>
           @foreach($conditions as $condition)
             <option value="{{ $condition->id }}">{{ $condition->name }}</option>
           @endforeach
         </select>
+        @error('condition_id')
+          <span class="error">{{ $message }}</span>
+        @enderror
       </div>
 
       <h3 class="section-heading">商品名と説明</h3>
       <div class="form-group">
         <label for="name" class="form-group-label">商品名</label>
         <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
+        @error('name')
+          <span class="error">{{ $message }}</span>
+        @enderror
       </div>
 
       <div class="form-group">
         <label for="brand" class="form-group-label">ブランド名</label>
         <input type="text" id="brand" name="brand_name" class="form-control" value="{{ old('brand_name') }}">
+        @error('brand_name')
+          <span class="error">{{ $message }}</span>
       </div>
 
       <div class="form-group">
         <label for="description" class="form-group-label">商品の説明</label>
         <textarea id="description" name="description" class="form-control" rows="4">{{ old('description') }}</textarea>
+        @error('description')
+          <span class="error">{{ $message }}</span>
+        @enderror
       </div>
 
       <div class="form-group">
@@ -68,6 +85,9 @@
           <span class="currency-symbol">¥</span>
           <input type="number" name="price" class="form-control price-input" value="{{ old('price') }}">
         </div>
+        @error('price')
+          <span class="error">{{ $message }}</span>
+        @enderror
       </div>
 
       <div class="submit-btn-wrapper">
@@ -78,7 +98,6 @@
 </div>
 
 <script>
-  // 画像選択用 input と要素を取得
   const fileInput = document.getElementById('product-image-input');
   const previewImg = document.getElementById('product-image-preview');
   const uploadText = document.getElementById('image-upload-text');
@@ -96,9 +115,9 @@
     // FileReader で画像を読み込む
     const reader = new FileReader();
     reader.onload = function(evt) {
-      previewImg.src = evt.target.result;     // base64 文字列をセット
-      previewImg.style.display = 'block';     // プレビューを表示
-      uploadText.style.display = 'none';      // 「画像を選択する」テキストを隠す
+      previewImg.src = evt.target.result;     
+      previewImg.style.display = 'block'; 
+      uploadText.style.display = 'none';      
     };
     reader.readAsDataURL(file);
   });
