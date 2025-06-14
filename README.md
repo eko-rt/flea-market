@@ -78,7 +78,7 @@ php artisan storage:link
 
 ## 1.5. ER図  
 
-![ER図](https://github.com/eko-rt/flea-market/raw/main/public/images/er_diagram.drawio.png)
+![ER図](https://github.com/eko-rt/flea-market/blob/main/src/public/images/er_diagram.drawio.png)
 
 ## 1.6. URL  
 
