@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\PurchaseRequest;
 use App\Models\PaymentMethod;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
@@ -24,11 +24,10 @@ class PurchaseController extends Controller
         return view('auth.purchase', compact('product', 'payment_methods'));
     }
 
-    public function store(Request $request, $item_id)
+    public function store(PurchaseRequest $request, $item_id)
     {
-        $request->validate([
-            'payment_method_id' => 'required|exists:payment_methods,id',
-        ]);
+        
+        $validated = $request->validated();
 
         $user    = Auth::user();
         $product = Product::findOrFail($item_id);

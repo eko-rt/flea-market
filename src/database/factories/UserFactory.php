@@ -21,10 +21,11 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('password'), 
-            'post_code' => $this->faker->postcode(),
-            'address' => $this->faker->address(),
+            'post_code' => $this->faker->regexify('[0-9]{3}-[0-9]{4}'),
+            'address' => $this->faker->prefecture . $this->faker->city . $this->faker->streetAddress,
+            'building_name' => $this->faker->secondaryAddress,
             'profile_image' => $this->faker->imageUrl(640, 480, 'people', true, 'Faker'),
-            'building_name' => $this->faker->word(),
+
         ];
     }
 

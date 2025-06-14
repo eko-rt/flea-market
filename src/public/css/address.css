@@ -53,6 +53,11 @@
         padding: 30px 20px;
     }
 }
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
 
 /*タブレット（768px〜850px）*/
 @media (min-width: 768px) and (max-width: 850px) {

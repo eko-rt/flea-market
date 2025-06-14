@@ -4,24 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\AddressRequest;
 
 class ProfileController extends Controller
 {
     //
-    public function updateAddress(Request $request, $item_id)
+    public function updateAddress(AddressRequest $request, $item_id)
     {
-        $request->validate([
-            'post_code' => 'required|string|max:10',
-            'address' => 'required|string|max:255',
-            'building_name' => 'nullable|string|max:255',
-        ]);
-        $user = auth()->user();
-        $user->post_code = $request->post_code;
-        $user->address = $request->address;
-        $user->building_name = $request->building_name;
-        $user->save();
-
+        $request->validated();
         // 商品購入画面にリダイレクト
         return redirect()->route('purchase.show', $item_id)->with('success', '住所を更新しました');
     }
@@ -39,14 +30,9 @@ class ProfileController extends Controller
 
         return view('auth.mypage', compact('tab', 'listedProducts', 'purchasedProducts'));
     }
-    public function update(Request $request)
+    public function update(AddressRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'post_code' => 'required|string|max:10',
-            'address' => 'nullable|string|max:255',
-            'building_name' => 'nullable|string|max:255',
-        ]);
+        $request->validated();
 
         $user = auth()->user();
         $user->name = $request->name;

@@ -11,20 +11,24 @@ class CommentRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
-    }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            //
-        ];
-    }
+        public function authorize(): bool
+        {
+            return true;
+        }
+    
+        public function rules(): array
+        {
+            return [
+                'body' => 'required|string|max:255',
+            ];
+        }
+    
+        public function messages(): array
+        {
+            return [
+                'body.required' => 'コメントを入力してください。',
+                'body.max' => 'コメントは255文字以内で入力してください。',
+            ];
+        }
 }

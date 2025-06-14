@@ -15,7 +15,7 @@
       <h3 class="section-heading">商品画像</h3>
       <div class="image-upload-wrapper">
         <label class="image-upload-box">
-          <input type="file" name="image" id="product-image-input" hidden>
+          <input type="file" name="product_image" id="product-image-input" hidden>
           <span id="image-upload-text">画像を選択する</span>
           <img id="product-image-preview" src="" alt="プレビュー画像" style="display: none;">
         </label>
@@ -69,6 +69,7 @@
         <input type="text" id="brand" name="brand_name" class="form-control" value="{{ old('brand_name') }}">
         @error('brand_name')
           <span class="error">{{ $message }}</span>
+        @enderror
       </div>
 
       <div class="form-group">

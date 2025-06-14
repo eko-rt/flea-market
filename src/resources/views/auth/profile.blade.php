@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label for="name">ユーザー名</label>
-            <input id="name" type="text" name="name" value="{{ old('name', auth()->user()->name) }}" required autofocus>
+            <input id="name" type="text" name="name" value="{{ old('name', auth()->user()->name) }}" autofocus>
             @error('name')
                 <span class="error">{{ $message }}</span>
             @enderror

@@ -34,12 +34,15 @@
 
     <h2 class="payment-method-title">支払い方法</h2>
     <div class="form-group">
-    <select id="payment_method" name="payment_method_id" class="payment-method" required>
+    <select id="payment_method" name="payment_method_id" class="payment-method">
         <option value="" disabled selected hidden>選択してください</option>
         @foreach($payment_methods as $method)
           <option value="{{ $method->id }}">{{ $method->name }}</option>
         @endforeach
       </select>
+      @error('payment_method_id')
+        <p class="error">{{ $message }}</p>
+      @enderror
     </div>
 
     <div class="shipping-address">

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -22,28 +23,32 @@ use Illuminate\Http\Request;
 |
 */
 
-// Fortify のビュー設定
-Fortify::registerView(fn () => view('auth.register'));
-Fortify::loginView(fn () => view('auth.login'));
+
 Fortify::verifyEmailView(fn () => view('auth.verify-email'));
 
-Route::middleware('auth')->group(function () {
-    // 1. 認証待ちページ（verification.notice）
-    Route::get('/email/verify', function () {
-        return view('auth.verify-email');
-    })->name('verification.notice');
+Route::middleware('guest')->group(function () {
+    // ログインフォーム表示
+    Route::get('login', [LoginController::class, 'showForm'])->name('login');
+    // ログイン処理
+    Route::post('login', [LoginController::class, 'login']);
+});
 
-    // 2. メールリンククリック後の認証処理（verification.verify）
+
+
+Route::middleware('auth')->group(function () {
+    // ログアウト
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+    // メール認証ルート
+    Route::get('/email/verify', fn() => view('auth.verify-email'))
+         ->name('verification.notice');
     Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
         $request->fulfill();
-        // 認証完了後の遷移先を指定
-        return redirect('/mypage/profile');  
+        return redirect('/mypage');
     })->middleware('signed')->name('verification.verify');
-
-    // 3. 認証メール再送（verification.send）
     Route::post('/email/verification-notification', function (Request $request) {
         $request->user()->sendEmailVerificationNotification();
-        return back()->with('status', '認証メールを再送信しました。');
+        return back()->with('status','認証メール再送しました');
     })->middleware('throttle:6,1')->name('verification.send');
 });
 
@@ -51,11 +56,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/mypage/profile', function () {
     return view('auth.profile'); 
 })->name('profile')->middleware('auth');
-
-Route::post('/logout', function () {
-    auth()->logout();
-    return redirect('/'); // ログアウト後に index ページへリダイレクト
-})->name('logout');
 
 Route::get('/', [ProductController::class, 'index'])->name('products.index');
 

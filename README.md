@@ -78,6 +78,8 @@ php artisan storage:link
 
 ## 1.5. ER図  
 
+![ER図](./public/images/er_diagram.drawio.png)
+
 ## 1.6. URL  
 
 - 開発環境：http://localhost/  

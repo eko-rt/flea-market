@@ -143,4 +143,15 @@
     .product-name {
         font-size: 16px;
     }
+
+    .tabs {
+        gap: 22px;
+        margin-bottom: 26px;
+        padding-left: 75px;
+        font-size: 20px;   
+    }
+    
+    .tab {
+        font-size: 18px;
+    }
 }

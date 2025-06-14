@@ -34,6 +34,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        Fortify::ignoreRoutes();
         $this->app->singleton(\Laravel\Fortify\Contracts\CreatesNewUsers::class, CreateNewUser::class);
 
         Fortify::createUsersUsing(CreateNewUser::class);
@@ -41,9 +43,6 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
         Fortify::registerView(fn () => view('auth.register'));
-        Fortify::loginView(fn () => view('auth.login'));
-        Fortify::registerView(fn() => view('auth.register'));
-        Fortify::loginView   (fn() => view('auth.login'));
         Fortify::verifyEmailView(fn() => view('auth.verify-email'));
 
         $this->app->singleton(RegisterResponseContract::class, function () {
@@ -56,51 +55,13 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
 
-        // プロフィール更新後のリダイレクト先を設定
-        $this->app->singleton(UpdateProfileInformationResponseContract::class, fn () =>
-            new class implements UpdateProfileInformationResponseContract {
-            public function toResponse($_): RedirectResponse 
-                {
-                    return redirect('/');
-                }
-            }
-        );;
-
-        Fortify::authenticateUsing(function (Request $request) {
-            $loginRequest = new LoginRequest();
-            $loginRequest->setContainer(app())->setRedirector(app('redirect'));
-        
-            $validator = Validator::make(
-                $request->all(),
-                $loginRequest->rules(),
-                $loginRequest->messages()
-            );
-        
-            if ($validator->fails()) {
-                throw new ValidationException($validator);
-            }
-        
-            $validated = $validator->validated();
-        
-            if (Auth::attempt([
-                'email' => $validated['email'],
-                'password' => $validated['password'],
-            ])) {
-                return Auth::user();
-            }
-        
-            throw ValidationException::withMessages([
-                'email' => ['ログイン情報が正しくありません。'],
-            ]);
-        });
-
-        // ログインのレートリミットを緩和（100回/1分）
+        // レートリミット
         RateLimiter::for('login', fn (Request $request) =>
-    Limit::perMinute(100)->by($request->ip())
-);
+            Limit::perMinute(100)->by($request->ip())
+        );
 
-        RateLimiter::for('two-factor', function (Request $request) {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
-        });
+        RateLimiter::for('two-factor', fn (Request $request) =>
+            Limit::perMinute(5)->by($request->session()->get('login.id'))
+        );
     }
 }

@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ConditionsTableSeeder::class,
             CategoriesTableSeeder::class,
-            ProductsTableSeeder::class,
-            
+            PaymentMethodsTableSeeder::class, 
+            ProductsTableSeeder::class,           
         ]);
         
     }
