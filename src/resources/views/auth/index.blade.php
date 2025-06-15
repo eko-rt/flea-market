@@ -15,9 +15,9 @@
 @section('content')
 
 @if(session('error'))
-  <div class="alert-danger">
-    {{ session('error') }}
-  </div>
+    <div class="alert-danger">
+        {{ session('error') }}
+    </div>
 @endif
 
 <div class="container">
@@ -27,34 +27,34 @@
             おすすめ
         </a>
         @auth
-        <a href="{{ route('products.index', ['tab' => 'mylist', 'keyword' => $keyword]) }}"
-        class="tab {{ $tab === 'mylist' ? 'active' : '' }}">
-        マイリスト
-        </a>
+            <a href="{{ route('products.index', ['tab' => 'mylist', 'keyword' => $keyword]) }}"
+            class="tab {{ $tab === 'mylist' ? 'active' : '' }}">
+            マイリスト
+            </a>
         @else
-        <a href="{{ route('products.index' , ['tab' => 'mylist', 'keyword' => $keyword]) }}"
+            <a href="{{ route('products.index' , ['tab' => 'mylist', 'keyword' => $keyword]) }}"
            class="tab {{ $tab === 'mylist' ? 'active' : '' }}">
             マイリスト
-        </a>
+            </a>
         @endauth
     </div>
 
     <div class="product-grid">
     @if($tab === 'mylist' && !Auth::check())
     @else
-    @foreach ($products as $product)
-        <div class="product-card">
-            <a href="{{ route('product.show', $product->id) }}">
-                <span class="product-image">
-                    <img src="{{ asset('storage/products-img/' . $product->product_image) }}" alt="商品画像">
-                    @if($product->sold_out)
-                        <span class="sold-ribbon">sold</span>
-                    @endif
-                </span>
-                <span class="product-name">{{ $product->name }}</span>
-            </a>
-        </div>
-    @endforeach
+        @foreach ($products as $product)
+            <div class="product-card">
+                <a href="{{ route('product.show', $product->id) }}">
+                    <span class="product-image">
+                        <img src="{{ asset('storage/products-img/' . $product->product_image) }}" alt="商品画像">
+                        @if($product->sold_out)
+                            <span class="sold-ribbon">sold</span>
+                        @endif
+                    </span>
+                    <span class="product-name">{{ $product->name }}</span>
+                </a>
+            </div>
+        @endforeach
     @endif
     </div>
 </div>

@@ -102,11 +102,9 @@
     font-weight: bold;
 }
 
-.product-actions {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 15px;
+.like-icon {
+    width: 24px;
+    height: 24px;
 }
 
 .product-actions img {

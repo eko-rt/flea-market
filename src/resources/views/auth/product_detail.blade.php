@@ -59,7 +59,7 @@
             </div>
 
             <div class="action-item">
-                <img src="{{ asset('images/Speechbubble.png') }}" alt="Comment" style="width: 24px; height: 24px;">
+                <img src="{{ asset('images/star.png') }}" class="like-icon" alt="Like">
                 <div class="count">{{ $product->comments->count() }}</div>
             </div>
         </div>

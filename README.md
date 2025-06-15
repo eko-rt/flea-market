@@ -74,7 +74,9 @@ php artisan storage:link
 - PHP7.4.9  
 - Laravel8.83.27  
 - MySQL8.0.26  
-- Mailtrap（メール認証テスト用）
+- Mailtrap（メール認証テスト用）  
+  開発環境では `config/services.php` に設定済み  
+  
 
 ## 1.5. ER図  
 

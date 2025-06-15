@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Modedls\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Condition;
@@ -25,8 +25,8 @@ class SellController extends Controller
 
         // 画像保存
         $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/products-img');
+        if ($request->hasFile('product_image')) {
+            $imagePath = $request->file('product_image')->store('public/products-img');
             $imagePath = basename($imagePath);
         }
 
